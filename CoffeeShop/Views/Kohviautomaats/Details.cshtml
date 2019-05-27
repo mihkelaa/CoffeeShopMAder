@@ -1,0 +1,42 @@
+﻿@model CoffeeShop.Models.Kohviautomaat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kohviautomaat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.JoogiNimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JoogiNimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopsePakis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopsePakis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TopseJuua)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TopseJuua)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

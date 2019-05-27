@@ -1,0 +1,37 @@
+﻿@model IEnumerable<CoffeeShop.Models.Kohviautomaat>
+
+@{
+    ViewBag.Title = "Telli";
+}
+
+<h2>Telli</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+           Joogi Nimi
+        </th>
+        <th>
+            Topse järgi
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.JoogiNimi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TopseJuua)
+        </td>
+        <td>
+            @Html.ActionLink("Vali", "Index", new { id=item.Id }) |
+        </td>
+    </tr>
+}
+
+</table>
