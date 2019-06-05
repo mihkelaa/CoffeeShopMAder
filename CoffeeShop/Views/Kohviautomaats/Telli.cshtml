@@ -6,9 +6,6 @@
 
 <h2>Telli</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -21,17 +18,24 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.JoogiNimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TopseJuua)
-        </td>
-        <td>
-            @Html.ActionLink("Vali", "Index", new { id=item.Id }) |
-        </td>
-    </tr>
+    //if(@item.TopseJuua>=1){
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JoogiNimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TopseJuua)
+            </td>
+            <td>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" name="btn_telli" />
+                    </div>
+                </div>
+            </td>
+        </tr>
+        //}
+    
 }
 
 </table>

@@ -30,6 +30,6 @@ namespace CoffeeShop.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<CoffeeShop.Models.Kohviautomaat> Kohviautomaats { get; set; }
+        public System.Data.Entity.DbSet<CoffeeShop.Models.Kohviautomaat> Kohviautomaat { get; set; }
     }
 }
