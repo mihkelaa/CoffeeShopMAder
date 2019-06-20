@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<CoffeeShop.Models.Kohviautomaat>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Hooldamine";
 }
 
-<h2>Haldus</h2>
+<h2>Hooldamine</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -29,7 +29,7 @@
             @Html.DisplayFor(modelItem => item.TopseJuua)
         </td>
         <td>
-            @Html.ActionLink("Lisa pakke", "Edit", new { id=item.Id }) 
+            @Html.ActionLink("Lisa täitepakk", "Täitepakk", new { id=item.Id })
         </td>
     </tr>
 }

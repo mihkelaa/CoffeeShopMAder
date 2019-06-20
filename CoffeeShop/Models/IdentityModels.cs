@@ -20,6 +20,8 @@ namespace CoffeeShop.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        internal object kohviautomaat;
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

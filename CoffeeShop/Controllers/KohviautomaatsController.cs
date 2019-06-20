@@ -84,18 +84,9 @@ namespace CoffeeShop.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (btn_halda == "Save")
+                if (btn_halda == "Lisa")
                 {
-                    if(kohviautomaat.PakkeLisatud == 1)
-                    {
-                        kohviautomaat.TopseJuua += 50;
-                        kohviautomaat.PakkeLisatud = 0;
-                    }
-                    if (kohviautomaat.PakkeLisatud ==2)
-                    {
-                        kohviautomaat.TopseJuua += 100;
-                        kohviautomaat.PakkeLisatud = 0;
-                    }
+                    kohviautomaat.TopseJuua += kohviautomaat.TopsePakis;
 
                 }
                 db.Entry(kohviautomaat).State = EntityState.Modified;
@@ -139,31 +130,65 @@ namespace CoffeeShop.Controllers
             }
             base.Dispose(disposing);
         }
-        [Authorize]
-        public ActionResult Haldus([Bind(Include = "Id,JoogiNimi,TopsePakis,TopseJuua")] Kohviautomaat kohviautomaat ,string btn)
-        {
-            if (ModelState.IsValid)
-            {   
-                db.Entry(kohviautomaat).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(kohviautomaat);
-
-        }
+        
         public ActionResult Telli(string btn_telli,Kohviautomaat kohviautomaat)
         {
             if (ModelState.IsValid)
             {
-                if (btn_telli == "Save")
+                if (btn_telli == "Telli")
                 {
-                    kohviautomaat.TopseJuua -= 1;
-                    return View(db.Kohviautomaat.ToList());
+                    kohviautomaat.TopseJuua--;
+                    db.Entry(kohviautomaat).State = EntityState.Modified;
+                    db.SaveChanges();
+                    
                 }
             }
+            
             return View(db.Kohviautomaat.ToList());
         }
-        
+        public ActionResult Täitepakk(int? id, Kohviautomaat kohviautomaat)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Kohviautomaat Kohviautomaat = db.Kohviautomaat.Find(id);
+            if (Kohviautomaat == null)
+            {
+                return HttpNotFound();
+            }
+            Kohviautomaat.TopseJuua += Kohviautomaat.TopsePakis;
+            db.Entry(Kohviautomaat).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Hooldamine");
+        }
+        public ActionResult Hooldamine()
+        {
+            return View(db.Kohviautomaat.ToList());
+        }
+
+        public ActionResult Tellimine()
+        {
+            var model = db.Kohviautomaat.Where(m => m.TopseJuua > 0).ToList();
+            return View(model);
+        }
+        public ActionResult KlientValitudJook(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Kohviautomaat kohviautomaat = db.Kohviautomaat.Find(id);
+            if (kohviautomaat == null)
+            {
+                return HttpNotFound();
+            }
+            kohviautomaat.TopseJuua--;
+            db.Entry(kohviautomaat).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Tellimine");
+
+        }
 
 
     }

@@ -14,10 +14,10 @@ namespace CoffeeShop.Models
         public int TopsePakis { get; set; } = 50;
 
         [Range(0, 100)]
-        public int TopseJuua { get; set; } = 0;
+        public int TopseJuua { get; set; }
 
-        [Range(0, 2)]
-        public int PakkeLisatud { get; set; } = 0;
+        
+       
 
 
 
