@@ -13,7 +13,7 @@ namespace CoffeeShop.Models
         public string JoogiNimi { get; set; }
         public int TopsePakis { get; set; } = 50;
 
-        public int TopseJuua { get; set; }
+        public int TopseJuua { get; set; } = 0;
 
         
        
