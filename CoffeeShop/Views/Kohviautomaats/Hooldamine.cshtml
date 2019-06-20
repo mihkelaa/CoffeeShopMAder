@@ -29,7 +29,9 @@
             @Html.DisplayFor(modelItem => item.TopseJuua)
         </td>
         <td>
-            @Html.ActionLink("Lisa täitepakk", "Täitepakk", new { id=item.Id })
+            @if (item.TopseJuua < 100)
+            {
+                @Html.ActionLink("Lisa täitepakk", "Täitepakk", new { id = item.Id })}
         </td>
     </tr>
 }
